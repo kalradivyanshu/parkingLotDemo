@@ -6,6 +6,7 @@ class ParkingLot:
 		self.colorToSlots = {}
 		self.colorToNumberplate = {}
 		self.numberPlateToSlot = {}
+		self.slotToCar = {}
 
 	def appendToKey(self, dic, key, val):
 		try:
@@ -29,6 +30,22 @@ class ParkingLot:
 		self.appendToKey(self.colorToSlots, car.getColor(), slotAlloted)
 		self.appendToKey(self.colorToNumberplate, car.getColor(), car.getNumberPlate())
 		self.numberPlateToSlot[car.getNumberPlate()] = slotAlloted
+		self.slotToCar[slotAlloted] = car
 		return True
+
+	def carLeft(self, slot):
+		if slot in self.freeSlots:
+			return False
+		self.filledSlots.remove(slot)
+		self.freeSlots.append(slot)
+		try:
+			car = self.slotToCar.pop(slot, None)
+			self.numberPlateToSlot.pop(car.getNumberPlate(), None)
+			color = car.getColor()
+			self.colorToSlots[color].remove(slot)
+			self.colorToNumberplate[color].remove(car.getNumberPlate())
+			return True
+		except:
+			return False
 
 	
