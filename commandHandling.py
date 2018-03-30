@@ -1,3 +1,8 @@
+from carClass.car import Car
+from parkingLotClass.parkingLot import ParkingLot
+
+parkingLot = None
+
 def handle(command):
 	try:
 		first, second = command.split(" ")
@@ -12,9 +17,14 @@ def handle(command):
 		if second == None or not second.isnumeric():
 			print("Syntax for create_parking_lot: create_parking_lot <Number>.")
 			sys.exit()
+		number = int(second)
+		parkingLot = ParkingLot(number)
 
 	elif first == "park":
-		pass
+		if second == None or third == None:
+			print("Syntax for park: park <Registration Number> <Colour>.")
+			sys.exit()
+		
 	elif first == "leave":
 		pass
 	elif first == "registration_numbers_for_cars_with_colour":

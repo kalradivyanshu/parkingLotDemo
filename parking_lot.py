@@ -1,6 +1,4 @@
 import sys
-from carClass.car import Car
-from parkingLotClass.parkingLot import ParkingLot
 from commandHandling import handle
 
 try:
