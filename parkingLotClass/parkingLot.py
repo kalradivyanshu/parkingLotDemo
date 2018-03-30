@@ -4,7 +4,7 @@ class ParkingLot:
 	def __init__(self, numberOfSlots):
 		self.numberOfSlots = numberOfSlots
 		self.filledSlots = []
-		self.freeSlots = list(range(numberOfSlots))
+		self.freeSlots = list(range(1, numberOfSlots + 1))
 		self.colorToSlots = {}
 		self.colorToNumberplate = {}
 		self.numberPlateToSlot = {}
@@ -24,8 +24,8 @@ class ParkingLot:
 			return []
 
 	def parkCar(self, car):
-		if len(self.filledSlots) == self.filledSlots:
-			return False
+		if len(self.filledSlots) == self.numberOfSlots:
+			return False, None
 		slotAlloted = min(self.freeSlots)
 		self.filledSlots.append(slotAlloted)
 		self.freeSlots.remove(slotAlloted)
@@ -33,7 +33,7 @@ class ParkingLot:
 		self.appendToKey(self.colorToNumberplate, car.getColor(), car.getNumberPlate())
 		self.numberPlateToSlot[car.getNumberPlate()] = slotAlloted
 		self.slotToCar[slotAlloted] = car
-		return True
+		return True, slotAlloted
 
 	def carLeft(self, slot):
 		if slot in self.freeSlots:
