@@ -48,4 +48,8 @@ class ParkingLot:
 		except:
 			return False
 
-	
+	def getSlotNumbersForCarsWithColor(self, color):
+		return getListFromDict(self, self.colorToSlots, color)
+
+	def getNumberPlatesForCarsWithColor(self, color):
+		return getListFromDict(self, self.colorToNumberplate, color)
