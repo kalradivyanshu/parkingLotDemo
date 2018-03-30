@@ -1,12 +1,13 @@
 import sys
+from carClass.car import Car
+from parkingLotClass.parkingLot import ParkingLot
+from commandHandling import handle
 
 try:
 	filePath = sys.argv[1]
 except:
 	filePath = None
 
-def handle(command):
-	print(command)
 
 if filePath != None:
 	try:
