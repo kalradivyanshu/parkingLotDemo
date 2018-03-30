@@ -1,6 +1,14 @@
 from carClass.car import Car
 from parkingLotClass.parkingLot import ParkingLot
 
+def printList(l):
+	if len(l) == 0:
+		print("None")
+		return None
+	for item in l:
+		print(item, end = " ")
+	print()
+
 def handle(command):
 	try:
 		first, second = command.split(" ")
@@ -49,9 +57,17 @@ def handle(command):
 	elif first == "registration_numbers_for_cars_with_colour":
 		if handle.parkingLot == None:
 			raise ValueError("No parking lot found.")
-		
+		if second == None:
+			raise ValueError("Syntax for registration_numbers_for_cars_with_colour: registration_numbers_for_cars_with_colour <colour>.")
+		printList(handle.parkingLot.getNumberPlatesForCarsWithColor(second))
+
 	elif first == "slot_numbers_for_cars_with_colour":
-		pass
+		if handle.parkingLot == None:
+			raise ValueError("No parking lot found.")
+		if second == None:
+			raise ValueError("Syntax for slot_numbers_for_cars_with_colour: slot_numbers_for_cars_with_colour <colour>.")
+		printList(handle.parkingLot.getSlotNumbersForCarsWithColor(second))
+
 	elif first == "slot_number_for_registration_number":
 		pass
 

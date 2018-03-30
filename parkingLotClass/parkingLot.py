@@ -51,10 +51,10 @@ class ParkingLot:
 			return False
 
 	def getSlotNumbersForCarsWithColor(self, color):
-		return getListFromDict(self, self.colorToSlots, color)
+		return self.getListFromDict(self.colorToSlots, color)
 
 	def getNumberPlatesForCarsWithColor(self, color):
-		return getListFromDict(self, self.colorToNumberplate, color)
+		return self.getListFromDict(self.colorToNumberplate, color)
 
 	def getSlotNumberForNumberPlate(self, numberPlate):
 		try:
