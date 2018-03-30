@@ -1,3 +1,5 @@
+from tabulate import tabulate
+
 class ParkingLot:
 	def __init__(self, numberOfSlots):
 		self.numberOfSlots = numberOfSlots
@@ -59,4 +61,14 @@ class ParkingLot:
 			return numberPlateToSlot[numberPlate]
 		except KeyError:
 			return None
-	
+
+	def __str__(self):
+		filledSlots = list(self.slotToCar.keys())
+		filledSlots.sort()
+		printList = []
+		for slot in filledSlots:
+			car = self.slotToCar[slot]
+			numberPlate = car.getNumberPlate()
+			color = car.getColor()
+			printList.append([slot, numberPlate, color])
+		return tabulate(printList, headers = ['Slot No.', 'Registration No', 'Colour'])
