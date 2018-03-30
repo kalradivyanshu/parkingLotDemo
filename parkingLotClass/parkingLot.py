@@ -53,3 +53,10 @@ class ParkingLot:
 
 	def getNumberPlatesForCarsWithColor(self, color):
 		return getListFromDict(self, self.colorToNumberplate, color)
+
+	def getSlotNumberForNumberPlate(self, numberPlate):
+		try:
+			return numberPlateToSlot[numberPlate]
+		except KeyError:
+			return None
+	
