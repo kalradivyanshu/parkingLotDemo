@@ -14,17 +14,14 @@ def handle(command):
 	if first == "create_parking_lot":
 		if second == None or not second.isnumeric():
 			print("Syntax for create_parking_lot: create_parking_lot <Number>.")
-			sys.exit()
 		number = int(second)
 		handle.parkingLot = ParkingLot(number)
 
 	elif first == "park":
 		if second == None or third == None:
 			print("Syntax for park: park <Registration Number> <Colour>.")
-			sys.exit()
 		if handle.parkingLot == None:
-			print("Please Create parking lot first.")
-			sys.exit()
+			print("Please create parking lot first.")
 		car = Car(second, third)
 		flag, slot = handle.parkingLot.parkCar(car)
 		if not flag:
@@ -33,6 +30,18 @@ def handle(command):
 			print("Allocated slot number:", slot)
 
 	elif first == "leave":
+		if second == None or not second.isnumeric():
+			print("Syntax for leave: leave <SlotNumber>.")
+		slot = int(second)
+		if handle.parkingLot == None:
+			print("Please create parking lot first.")
+		flag = handle.parkingLot.carLeft(slot)
+		if flag == False:
+			print("Slot already empty.")
+		else:
+			print("Slot number", slot, "is free")
+
+	elif first == "status":
 		pass
 	elif first == "registration_numbers_for_cars_with_colour":
 		pass
