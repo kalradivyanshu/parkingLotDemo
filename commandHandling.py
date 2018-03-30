@@ -24,6 +24,7 @@ def handle(command):
 			raise ValueError("Syntax for create_parking_lot: create_parking_lot <Number>.")
 		number = int(second)
 		handle.parkingLot = ParkingLot(number)
+		print("Created a parking lot with 6 slots")
 
 	elif first == "park":
 		if second == None or third == None:
@@ -78,5 +79,7 @@ def handle(command):
 			print("Not Found.")
 		else:
 			print(slot)
+	else:
+		raise ValueError("Command not found.")
 
 handle.parkingLot = None

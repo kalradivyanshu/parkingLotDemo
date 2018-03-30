@@ -23,3 +23,15 @@ if filePath != None:
 	except FileNotFoundError:
 		print(filePath, "does not exist.")
 		sys.exit()
+
+else:
+	print("Type \"exit\" to exit.")
+	while True:
+		command = input(">> ")
+		if command == "exit":
+			sys.exit()
+		try:
+			handle(command) #to remove \n
+		except Exception as e:
+			print("In command", command)
+			print("Error: ", e)
