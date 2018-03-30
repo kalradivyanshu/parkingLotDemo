@@ -13,7 +13,12 @@ if filePath != None:
 		content = f.readlines()
 		f.close()
 		for command in content:
-			handle(command[:-1]) #to remove \n
+			try:
+				handle(command[:-1]) #to remove \n
+			except Exception as e:
+				print("In command", command[:-1])
+				print("Error: ", e)
+				sys.exit()
 
 	except FileNotFoundError:
 		print(filePath, "does not exist.")

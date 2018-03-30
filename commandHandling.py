@@ -13,15 +13,15 @@ def handle(command):
 			second, third = None, None
 	if first == "create_parking_lot":
 		if second == None or not second.isnumeric():
-			print("Syntax for create_parking_lot: create_parking_lot <Number>.")
+			raise ValueError("Syntax for create_parking_lot: create_parking_lot <Number>.")
 		number = int(second)
 		handle.parkingLot = ParkingLot(number)
 
 	elif first == "park":
 		if second == None or third == None:
-			print("Syntax for park: park <Registration Number> <Colour>.")
+			raise ValueError("Syntax for park: park <Registration Number> <Colour>.")
 		if handle.parkingLot == None:
-			print("Please create parking lot first.")
+			raise ValueError("Please create parking lot first.")
 		car = Car(second, third)
 		flag, slot = handle.parkingLot.parkCar(car)
 		if not flag:
@@ -31,10 +31,10 @@ def handle(command):
 
 	elif first == "leave":
 		if second == None or not second.isnumeric():
-			print("Syntax for leave: leave <SlotNumber>.")
+			raise ValueError("Syntax for leave: leave <SlotNumber>.")
 		slot = int(second)
 		if handle.parkingLot == None:
-			print("Please create parking lot first.")
+			raise ValueError("Please create parking lot first.")
 		flag = handle.parkingLot.carLeft(slot)
 		if flag == False:
 			print("Slot already empty.")
@@ -47,7 +47,9 @@ def handle(command):
 		print(handle.parkingLot)
 
 	elif first == "registration_numbers_for_cars_with_colour":
-		pass
+		if handle.parkingLot == None:
+			raise ValueError("No parking lot found.")
+		
 	elif first == "slot_numbers_for_cars_with_colour":
 		pass
 	elif first == "slot_number_for_registration_number":
