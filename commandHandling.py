@@ -42,7 +42,10 @@ def handle(command):
 			print("Slot number", slot, "is free")
 
 	elif first == "status":
-		pass
+		if handle.parkingLot == None:
+			print("No parking lot found.")
+		print(handle.parkingLot)
+
 	elif first == "registration_numbers_for_cars_with_colour":
 		pass
 	elif first == "slot_numbers_for_cars_with_colour":
