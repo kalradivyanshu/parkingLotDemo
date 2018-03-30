@@ -58,7 +58,7 @@ class ParkingLot:
 
 	def getSlotNumberForNumberPlate(self, numberPlate):
 		try:
-			return numberPlateToSlot[numberPlate]
+			return self.numberPlateToSlot[numberPlate]
 		except KeyError:
 			return None
 

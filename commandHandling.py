@@ -69,6 +69,14 @@ def handle(command):
 		printList(handle.parkingLot.getSlotNumbersForCarsWithColor(second))
 
 	elif first == "slot_number_for_registration_number":
-		pass
+		if handle.parkingLot == None:
+			raise ValueError("No parking lot found.")
+		if second == None:
+			raise ValueError("Syntax for slot_number_for_registration_number: slot_number_for_registration_number <RegistrationNumber>")
+		slot = handle.parkingLot.getSlotNumberForNumberPlate(second)
+		if slot == None:
+			print("Not Found.")
+		else:
+			print(slot)
 
 handle.parkingLot = None
